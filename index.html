@@ -9,48 +9,40 @@
 body{background:linear-gradient(270deg,#ff6a00,#ffa500,#ffcf70,#fff8f0);background-size:400% 400%;animation:bg 12s ease infinite;min-height:100vh;color:#4a2c00;overflow-x:hidden}
 @keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .container{max-width:1100px;margin:0 auto;padding:15px;padding-bottom:80px;position:relative;z-index:2}
-header{text-align:center;background:#fff;border-radius:22px;padding:18px;border:4px solid #ff8c00;margin-bottom:12px}
-header h1{font-size:2rem;color:#e65c00}
+header{text-align:center;background:#fff;border-radius:22px;padding:18px;border:4px solid #ff8c00;box-shadow:0 10px 30px rgba(0,0,0,.2);margin-bottom:12px}
+header h1{font-size:2rem;color:#e65c00;animation:gl 2s infinite alternate}
+@keyframes gl{to{text-shadow:0 0 18px #ff8c00}}
 header span{font-size:.9rem;color:#999;display:block;direction:ltr}
-.tabs{display:flex;gap:10px;justify-content:center;margin-bottom:12px}
-.tabs button{background:#fff;border:3px solid #ff8c00;border-radius:30px;padding:10px 26px;font-weight:bold;font-size:1rem;cursor:pointer;color:#e65c00}
-.tabs button.active{background:#e65c00;color:#fff;box-shadow:0 5px 15px rgba(0,0,0,.25)}
-.tab{display:none}.tab.active{display:block;animation:fi .4s}
-@keyframes fi{from{opacity:0;transform:translateY(15px)}to{opacity:1}}
 .rank-bar{background:#fff;border-radius:14px;padding:12px;margin-bottom:12px;border:2px solid #ffb347;text-align:center}
-.rank-bar .lvl{font-weight:bold;color:#e65c00}
+.rank-bar .lvl{font-weight:bold;color:#e65c00;font-size:1.05rem}
 .progress{height:12px;background:#ffe0b3;border-radius:20px;margin-top:8px;overflow:hidden}
 .progress div{height:100%;background:linear-gradient(90deg,#ff8c00,#ffd54f);transition:width .4s}
-.panel{background:#fff;border-radius:14px;padding:12px;margin-bottom:12px;border:2px solid #ffb347}
-.panel h3{color:#b47a00;font-size:1rem;margin-bottom:8px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.ach{background:#fff;border-radius:14px;padding:12px;margin-bottom:12px;border:2px solid #ffd54f}
+.ach h3{color:#b47a00;font-size:1rem;margin-bottom:8px;text-align:center}
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
 .a{background:#fff8e1;border-radius:10px;padding:8px;text-align:center;font-size:.78rem;border:1px solid #ffe0b3}
 .a.done{background:#e8f5e9;border-color:#4caf50}
 .a b{display:block;font-size:1.3rem}
-.end{background:#1a1a2e;color:#eee;border-radius:14px;padding:12px;text-align:center;border:2px solid #444;min-height:150px}
-.end.lock{filter:grayscale(1);opacity:.75}
-.end.open{background:linear-gradient(160deg,#2d1b4e,#e65c00);border-color:gold;box-shadow:0 0 20px gold;animation:glowE 2s infinite alternate}
-@keyframes glowE{to{box-shadow:0 0 35px gold}}
-.end b{font-size:2rem;display:block}
-.end small{color:#ffd54f}
 .stats{display:flex;gap:10px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;position:sticky;top:8px;z-index:10}
-.stat{background:#fff;border-radius:14px;padding:10px 20px;text-align:center;min-width:125px;border:2px solid #ffb347}
+.stat{background:#fff;border-radius:14px;padding:10px 20px;text-align:center;min-width:130px;border:2px solid #ffb347;box-shadow:0 5px 15px rgba(0,0,0,.15)}
 .stat b{font-size:1.5rem;color:#e65c00;display:block}
 #combo{position:fixed;top:12px;left:12px;background:#4a2c00;color:#ffd54f;font-weight:bold;padding:9px 16px;border-radius:30px;display:none;z-index:50}
 #boost{position:fixed;top:60px;left:12px;background:gold;color:#4a2c00;font-weight:bold;padding:8px 14px;border-radius:30px;display:none;z-index:50}
-.game-area{background:#fff;border-radius:26px;padding:28px 15px;text-align:center;border:4px solid #ff8c00;margin-bottom:12px;position:relative}
+.game-area{background:#fff;border-radius:26px;padding:28px 15px;text-align:center;border:4px solid #ff8c00;margin-bottom:12px;position:relative;box-shadow:0 15px 40px rgba(230,92,0,.25)}
 #cornBtn{font-size:8.5rem;background:none;border:none;cursor:pointer;user-select:none;animation:idle 2s ease-in-out infinite}
 @keyframes idle{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.06) rotate(2deg)}}
 #cornBtn:active{transform:scale(.82)}
-#golden{font-size:4rem;background:none;border:none;cursor:pointer;display:none;position:absolute;top:15px;left:20px}
-.hint{color:#e65c00;font-weight:bold;margin-top:8px}
+#golden{font-size:4rem;background:none;border:none;cursor:pointer;display:none;animation:gold 1s infinite alternate;position:absolute;top:15px;left:20px}
+@keyframes gold{to{transform:scale(1.25) rotate(10deg)}}
+.hint{color:#e65c00;font-weight:bold;margin-top:8px;animation:pu 1.2s infinite}
+@keyframes pu{50%{opacity:.6}}
 .fly{position:fixed;font-weight:bold;pointer-events:none;z-index:99;animation:fu 1s forwards;font-size:1.3rem}
 @keyframes fu{to{transform:translateY(-150px) scale(1.3);opacity:0}}
 .particle{position:fixed;font-size:1.7rem;pointer-events:none;z-index:99;animation:bo 1s forwards}
 @keyframes bo{to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
-.story{background:#fff;border-radius:12px;padding:12px 15px;margin-bottom:12px;border-right:6px solid #e65c00;font-size:.92rem;line-height:1.9}
-.shop h2,.ends-h{text-align:center;color:#fff;background:linear-gradient(90deg,#e65c00,#ff8c00);border-radius:14px;padding:13px;margin-bottom:6px}
-.shop-sub,.ends-sub{text-align:center;color:#fff;margin-bottom:8px;font-size:.85rem}
+.story{background:#fff;border-radius:12px;padding:12px 15px;margin-bottom:12px;border-right:6px solid #e65c00;line-height:1.9;font-size:.92rem}
+.shop h2{text-align:center;color:#fff;background:linear-gradient(90deg,#e65c00,#ff8c00);border-radius:14px;padding:13px;margin-bottom:4px}
+.shop-sub{text-align:center;color:#fff;margin-bottom:8px;font-size:.85rem}
 .cat{background:#4a2c00;color:#ffd54f;border-radius:9px;padding:8px;margin:15px 0 10px;text-align:center;font-weight:bold}
 .shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .card{background:#fff;border-radius:16px;padding:14px;text-align:center;border:2px solid #ffb347}
@@ -64,9 +56,9 @@ header span{font-size:.9rem;color:#999;display:block;direction:ltr}
 .flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:200}
 .flash.go{animation:fl .4s}
 @keyframes fl{30%{opacity:.7}}
-#mile{position:fixed;top:38%;left:50%;transform:translate(-50%,-50%) scale(0);background:#111;color:#ffd54f;padding:18px 30px;border-radius:18px;font-size:1.25rem;font-weight:bold;z-index:300;border:3px solid gold;text-align:center;max-width:90vw}
-#mile.show{animation:mi .25s forwards,mo .6s 2.8s forwards}
-@keyframes mi{to{transform:translate(-50%,-50%) scale(1) rotate(-2deg)}}
+#mile{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(0);background:#4a2c00;color:#ffd54f;padding:18px 35px;border-radius:18px;font-size:1.4rem;font-weight:bold;z-index:300;border:3px solid #ffd54f;text-align:center}
+#mile.show{animation:mi .25s forwards,mo .5s 2s forwards}
+@keyframes mi{to{transform:translate(-50%,-50%) scale(1)}}
 @keyframes mo{to{transform:translate(-50%,-50%) scale(0);opacity:0}}
 .made{position:fixed;bottom:10px;right:12px;background:rgba(0,0,0,.65);color:#fff;font-size:.8rem;padding:5px 12px;border-radius:20px;direction:ltr;z-index:60}
 .float-bg{position:fixed;top:-50px;font-size:1.8rem;opacity:.45;pointer-events:none;animation:fa linear forwards;z-index:1}
@@ -80,39 +72,24 @@ header span{font-size:.9rem;color:#999;display:block;direction:ltr}
 <div id="boost">⚡ بوست ۲ برابر!</div>
 <div class="container">
 <header><h1>🍿 امپراطوری پاپ‌کورن 🍿<span>poppopcorn.com</span></h1></header>
-<div class="tabs">
-<button id="t1" class="active" onclick="tab('g')">🎮 بازی</button>
-<button id="t2" onclick="tab('s')">🛒 فروشگاه</button>
-<button id="t3" onclick="tab('e')">🔒 پایان‌ها <span id="endCount"></span></button>
-</div>
-<div id="tab-g" class="tab active">
 <div class="rank-bar"><div class="lvl" id="rank">🏆 رتبه</div><div class="progress"><div id="bar" style="width:5%"></div></div><small id="nextRank" style="color:#888"></small></div>
-<div class="story"><b>📖 داستان:</b> کارگر ساده بودی، اخراج شدی! با یه ذرت 🌽 امپراطوری بساز! ۱۲ تا پایان مخفی توی تب پایان‌ها قایم شده، خودت پیداشون کن! 🚀</div>
+<div class="story"><b>📖 داستان:</b> کارگر ساده بودی، اخراج شدی! حالا با یه ذرت 🌽 امپراطوری بساز! سریع بزن کمبو بگیر، ذرت طلایی بگیر، اچیومنت باز کن! 🚀</div>
 <div class="stats">
 <div class="stat"><b id="count">۰</b><small>🍿 پاپ‌کورن</small></div>
 <div class="stat"><b id="perClick">۱</b><small>👆 هر کلیک</small></div>
 <div class="stat"><b id="perSec">۰</b><small>⚙️ هر ثانیه</small></div>
 <div class="stat"><b id="total">۰</b><small>💰 کل درآمد</small></div>
 </div>
-<div class="game-area"><button id="golden">🌟</button><br><button id="cornBtn">🌽</button><div class="hint">⚡ بکوب روی ذرت! ⚡</div></div>
-<div class="panel"><h3>🏆 اهداف — جایزه بگیر!</h3><div class="grid" id="achGrid"></div></div>
-</div>
-<div id="tab-s" class="tab">
-<div class="shop"><h2>🛒 فروشگاه بزرگ — ۲۴ آیتم 🛒</h2><div class="shop-sub">هر خرید = انفجار 🎉</div>
+<div class="game-area"><button id="golden">🌟</button><br><button id="cornBtn">🌽</button><div class="hint">⚡ بکوب روی ذرت! ذرت طلایی رو از دست نده! ⚡</div></div>
+<div class="ach"><h3>🏆 اهداف (اچیومنت) — جایزه بگیر!</h3><div class="ach-grid" id="achGrid"></div></div>
+<div class="shop"><h2>🛒 فروشگاه بزرگ — ۲۴ آیتم 🛒</h2><div class="shop-sub">هر خرید = انفجار جشن 🎉</div>
 <div class="cat">👆 قدرت کلیک</div><div class="shop-grid" id="shopClick"></div>
-<div class="cat">⚙️ درآمد خودکار</div><div class="shop-grid" id="shopSec"></div></div>
-</div>
-<div id="tab-e" class="tab">
-<h2 class="ends-h">🔒 پایان‌های مخفی — ۱۲ پایان 🔒</h2>
-<div class="ends-sub">معلوم نیست چی‌ان! شرط هر کدوم رو حدس بزن و بازش کن! 🎬</div>
-<div class="shop-grid" id="endGrid" style="margin-top:12px"></div>
+<div class="cat">⚙️ درآمد خودکار</div><div class="shop-grid" id="shopSec"></div>
 </div>
 </div>
 <div class="made">made by makan</div>
 <script>
-function tab(w){['g','s','e'].forEach(k=>{document.getElementById('tab-'+k).classList.remove('active')});document.getElementById('tab-'+w).classList.add('active');['t1','t2','t3'].forEach(t=>document.getElementById(t).classList.remove('active'));if(w==='g')document.getElementById('t1').classList.add('active');if(w==='s')document.getElementById('t2').classList.add('active');if(w==='e')document.getElementById('t3').classList.add('active');}
-let S=JSON.parse(localStorage.getItem('popV3'))||{count:0,total:0,perClick:1,perSec:0,items:{},ach:{},end:{},clicks:0};
-S.end=S.end||{};S.ach=S.ach||{};S.items=S.items||{};
+let S=JSON.parse(localStorage.getItem('popV3'))||{count:0,total:0,perClick:1,perSec:0,items:{},ach:{},clicks:0};
 const items=[
 {id:'salt',e:'🧂',n:'نمک جادویی',d:'+۱ کلیک',b:50,t:'click',v:1},
 {id:'butter',e:'🧈',n:'کره طلایی',d:'+۳ کلیک',b:200,t:'click',v:3},
@@ -126,10 +103,10 @@ const items=[
 {id:'crown_c',e:'🤴',n:'تاج سرآشپز',d:'+۳۵۰ کلیک',b:35000,t:'click',v:350},
 {id:'diamond',e:'💎',n:'ذرت الماسی',d:'+۶۰۰ کلیک',b:60000,t:'click',v:600},
 {id:'alien',e:'👽',n:'ذرت فضایی',d:'+۱۲۰۰ کلیک',b:130000,t:'click',v:1200},
-{id:'machine',e:'🏭',n:'دستگاه',d:'+۵ ثانیه',b:300,t:'sec',v:5},
+{id:'machine',e:'🏭',n:'دستگاه پاپ‌کورن',d:'+۵ ثانیه',b:300,t:'sec',v:5},
 {id:'worker',e:'👷',n:'کارگر کمکی',d:'+۱۵ ثانیه',b:1000,t:'sec',v:15},
 {id:'bike',e:'🛵',n:'پیک موتوری',d:'+۳۰ ثانیه',b:2200,t:'sec',v:30},
-{id:'truck',e:'🚚',n:'کامیون',d:'+۶۰ ثانیه',b:4500,t:'sec',v:60},
+{id:'truck',e:'🚚',n:'کامیون پخش',d:'+۶۰ ثانیه',b:4500,t:'sec',v:60},
 {id:'shop1',e:'🏪',n:'مغازه',d:'+۱۴۰ ثانیه',b:10000,t:'sec',v:140},
 {id:'factory',e:'🏢',n:'کارخانه',d:'+۳۰۰ ثانیه',b:25000,t:'sec',v:300},
 {id:'mall',e:'🏬',n:'زنجیره‌ای',d:'+۸۰۰ ثانیه',b:70000,t:'sec',v:800},
@@ -137,18 +114,63 @@ const items=[
 {id:'empire',e:'👑',n:'امپراطوری',d:'+۳۰۰۰ ثانیه',b:280000,t:'sec',v:3000},
 {id:'rocket',e:'🚀',n:'سفینه ذرت',d:'+۷۰۰۰ ثانیه',b:600000,t:'sec',v:7000},
 {id:'moon',e:'🌙',n:'پایگاه ماه',d:'+۱۵۰۰۰ ثانیه',b:1400000,t:'sec',v:15000},
-{id:'galaxy',e:'🌌',n:'کهکشان',d:'+۴۰۰۰۰ ثانیه',b:3500000,t:'sec',v:40000}];
+{id:'galaxy',e:'🌌',n:'کهکشان پاپ‌کورن',d:'+۴۰۰۰۰ ثانیه',b:3500000,t:'sec',v:40000}];
 const ranks=[[0,'🏳️ کارگر اخراجی'],[500,'🌽 ذرت‌فروش'],[2000,'🍿 مغازه‌دار'],[8000,'🏪 فروشگاه‌دار'],[25000,'🏭 کارخانه‌دار'],[70000,'🏢 سرمایه‌دار'],[200000,'💰 میلیونر'],[600000,'👑 امپراطور'],[1500000,'🌍 سلطان جهان'],[4000000,'🚀 فاتح فضا'],[10000000,'🌌 خدای کهکشان'],[30000000,'♾️ افسانه ابدی']];
 const achs=[
-{id:'c100',e:'👆',n:'۱۰۰ کلیک',c:'۱۰۰ کلیک',need:100,rw:500,check:()=>S.clicks>=100},
+{id:'c100',e:'👆',n:'۱۰۰ کلیک',c:'100 کلیک بزن',need:100,rw:500,check:()=>S.clicks>=100},
 {id:'c1000',e:'⚡',n:'۱۰۰۰ کلیک',c:'۱۰۰۰ کلیک!',need:1000,rw:5000,check:()=>S.clicks>=1000},
-{id:'m1k',e:'💰',n:'هزاری',c:'۱۰۰۰ جمع کن',need:1000,rw:1000,check:()=>S.total>=1000},
-{id:'m50k',e:'💵',n:'۵۰ هزار',c:'۵۰هزار',need:50000,rw:10000,check:()=>S.total>=50000},
+{id:'m1k',e:'💰',n:'هزاری',c:'۱۰۰۰ پاپ‌کورن',need:1000,rw:1000,check:()=>S.total>=1000},
+{id:'m50k',e:'💵',n:'۵۰ هزار',c:'۵۰هزار جمع کن',need:50000,rw:10000,check:()=>S.total>=50000},
 {id:'m1M',e:'💎',n:'میلیونر',c:'۱ میلیون!',need:1000000,rw:100000,check:()=>S.total>=1000000},
-{id:'combo50',e:'🔥',n:'کمبو ۵۰',c:'کمبو ۵۰',need:50,rw:3000,check:()=>maxCombo>=50},
+{id:'combo50',e:'🔥',n:'کمبو ۵۰',c:'کمبو ۵۰ بگیر',need:50,rw:3000,check:()=>maxCombo>=50},
 {id:'shop5',e:'🛒',n:'خریدار',c:'۵ خرید',need:5,rw:2000,check:()=>buyCount()>=5},
+{id:'shop15',e:'🏬',n:'تاجر',c:'۱۵ خرید',need:15,rw:15000,check:()=>buyCount()>=15},
 {id:'gold1',e:'🌟',n:'شکارچی طلا',c:'۱ ذرت طلایی',need:1,rw:5000,check:()=>goldGot>=1},
 {id:'sec100',e:'⚙️',n:'اتوماسیون',c:'۱۰۰ در ثانیه',need:100,rw:8000,check:()=>S.perSec>=100},
-{id:'click500',e:'👊',n:'مشت آهنین',c:'۵۰۰ در کلیک',need:500,rw:20000,check:()=>S.perClick>=500}];
-const ends=[
-{id:'e1',e:'😢',n:'پایان ۱: انتقام آروم',h:'شاید فقط ۱۰۰ بار باید بکوبی...',s:'رئ
+{id:'click500',e:'👊',n:'مشت آهنین',c:'۵۰۰ در کلیک',need:500,rw:20000,check:()=>S.perClick>=500},
+{id:'rank6',e:'👑',n:'شاه',c:'برس به میلیونر',need:1,rw:50000,check:()=>S.total>=200000}];
+let combo=0,maxCombo=0,goldGot=0,boostUntil=0,ct=null;
+function buyCount(){let s=0;for(let k in S.items)s+=S.items[k];return s;}
+function fa(n){return Number(Math.floor(n)).toLocaleString('fa-IR')}
+function cost(it){return Math.floor(it.b*Math.pow(1.6,S.items[it.id]||0))}
+function save(){localStorage.setItem('popV3',JSON.stringify(S))}
+function mile(t){let m=document.getElementById('mile');m.textContent=t;m.classList.remove('show');void m.offsetWidth;m.classList.add('show');let f=document.getElementById('flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');}
+function snd(big){try{let c=new (window.AudioContext||window.webkitAudioContext)();let o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.type='square';o.frequency.setValueAtTime(big?800:400+Math.random()*400,c.currentTime);o.frequency.exponentialRampToValueAtTime(1300,c.currentTime+.12);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.15);o.start();o.stop(c.currentTime+.16);}catch(e){}}
+function boom(x,y,n){for(let i=0;i<n;i++){let p=document.createElement('div');p.className='particle';p.textContent=['🍿','✨','⭐','💥'][Math.floor(Math.random()*4)];p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',(Math.random()*300-150)+'px');p.style.setProperty('--dy',(Math.random()*300-150)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1000);}}
+function card(it){let o=S.items[it.id]||0,c=cost(it);let d=document.createElement('div');d.className='card';d.innerHTML='<div class="emoji">'+it.e+'</div><h3>'+it.n+'</h3><p>'+it.d+'</p><div class="price">🍿 '+fa(c)+'</div><div class="owned">تعداد: '+fa(o)+'</div><br><button '+(S.count<c?'disabled':'')+'>خرید 🛒</button>';d.querySelector('button').onclick=(e)=>buy(it.id,e);return d;}
+function render(){
+document.getElementById('count').textContent=fa(S.count);
+document.getElementById('perClick').textContent=fa(S.perClick);
+document.getElementById('perSec').textContent=fa(S.perSec);
+document.getElementById('total').textContent=fa(S.total);
+let sc=document.getElementById('shopClick');sc.innerHTML='';
+let ss=document.getElementById('shopSec');ss.innerHTML='';
+items.forEach(it=>{if(it.t==='click')sc.appendChild(card(it));else ss.appendChild(card(it));});
+let r=ranks[0][1],nr=null;
+for(let i=0;i<ranks.length;i++){if(S.total>=ranks[i][0])r=ranks[i][1];else{nr=ranks[i];break;}}
+document.getElementById('rank').textContent='🏆 رتبه: '+r;
+if(nr){document.getElementById('bar').style.width=Math.min(100,S.total/nr[0]*100)+'%';document.getElementById('nextRank').textContent='تا «'+nr[1]+'» مونده: '+fa(nr[0]-S.total)+' 🍿';}
+else{document.getElementById('bar').style.width='100%';document.getElementById('nextRank').textContent='♾️ افسانه‌ای شدی ماکان!';}
+let g=document.getElementById('achGrid');g.innerHTML='';
+achs.forEach(a=>{let done=!!S.ach[a.id];let d=document.createElement('div');d.className='a'+(done?' done':'');d.innerHTML='<b>'+a.e+'</b>'+a.n+'<br><small>'+a.c+'</small><br>'+(done?'✅ ':'🎁 '+fa(a.rw));g.appendChild(d);});
+achs.forEach(a=>{if(!S.ach[a.id]&&a.check()){S.ach[a.id]=1;S.count+=a.rw;S.total+=a.rw;mile('🏆 هدف باز شد: '+a.n+'! +'+fa(a.rw)+' 🍿');snd(true);}});
+save();}
+function buy(id,e){let it=items.find(i=>i.id===id),c=cost(it);if(S.count>=c){S.count-=c;S.items[id]=(S.items[id]||0)+1;if(it.t==='click')S.perClick+=it.v;else S.perSec+=it.v;snd(true);boom(e.clientX,e.clientY,12);render();}}
+document.getElementById('cornBtn').addEventListener('click',function(e){
+S.clicks++;let boost=Date.now()<boostUntil?2:1;
+let crit=Math.random()<0.08;combo++;maxCombo=Math.max(maxCombo,combo);clearTimeout(ct);ct=setTimeout(()=>{combo=0;document.getElementById('combo').style.display='none';},2000);
+if(combo>=5){document.getElementById('combo').style.display='block';document.getElementById('comboN').textContent=fa(combo);}
+let gain=S.perClick*(1+Math.floor(combo/20))*(crit?5:1)*boost;
+S.count+=gain;S.total+=gain;snd(crit);boom(e.clientX,e.clientY,crit?16:7);
+let s=document.createElement('div');s.className='fly';s.style.color=crit?'#d40000':'#b34700';s.textContent=(crit?'💥 CRIT +':'🍿 +')+fa(gain);s.style.left=(e.clientX-20)+'px';s.style.top=(e.clientY-30)+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),1000);
+if(combo%100===0)mile('🔥🔥 کمبو '+fa(combo)+'! دیوونه‌ای! 🔥🔥');
+render();});
+document.getElementById('golden').addEventListener('click',function(){this.style.display='none';goldGot++;boostUntil=Date.now()+5*60*1000;document.getElementById('boost').style.display='block';mile('🌟 ذرت طلایی! ۵ دقیقه ۲ برابر! 🌟');snd(true);render();});
+setInterval(()=>{if(Date.now()>boostUntil)document.getElementById('boost').style.display='none';else document.getElementById('boost').style.display='block';},1000);
+setInterval(()=>{let g=document.getElementById('golden');g.style.display='block';setTimeout(()=>g.style.display='none',8000);},25000);
+setInterval(()=>{if(S.perSec>0){let b=Date.now()<boostUntil?2:1;S.count+=S.perSec*b;S.total+=S.perSec*b;render();}},1000);
+setInterval(()=>{let f=document.createElement('div');f.className='float-bg';f.textContent=['🍿','🌽','⭐'][Math.floor(Math.random()*3)];f.style.left=Math.random()*100+'vw';f.style.animationDuration=(4+Math.random()*5)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),9000);},900);
+render();
+</script>
+</body>
+</html>
