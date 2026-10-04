@@ -52,4 +52,120 @@ header h1 span{font-size:1rem;color:#999;display:block;direction:ltr}
 @keyframes cardIn{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
 .card:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 25px rgba(230,92,0,.3)}
 .card .emoji{font-size:2.8rem;display:inline-block;animation:wobble 3s ease-in-out infinite}
-@keyframes wobble{0%,100%{transform:
+@keyframes wobble{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.card h3{margin:8px 0 4px;color:#e65c00;font-size:1rem}
+.card p{font-size:.82rem;color:#666;min-height:38px}
+.card .price{background:#fff3e0;border-radius:10px;padding:6px;margin:8px 0;font-weight:bold;color:#b34700}
+.card button{background:linear-gradient(180deg,#ffa500,#e65c00);color:#fff;border:none;border-radius:12px;padding:11px;font-size:.95rem;font-weight:bold;cursor:pointer;width:100%;transition:.2s;box-shadow:0 4px 0 #a03e00}
+.card button:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.1)}
+.card button:active:not(:disabled){transform:translateY(2px);box-shadow:none}
+.card button:disabled{background:#ccc;cursor:not-allowed;box-shadow:none}
+.card .owned{font-size:.8rem;color:green;font-weight:bold}
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:200}
+.flash.go{animation:flashA .4s}
+@keyframes flashA{0%{opacity:0}30%{opacity:.7}100%{opacity:0}}
+.made{position:fixed;bottom:10px;right:12px;background:rgba(0,0,0,.65);color:#fff;font-size:.8rem;padding:5px 12px;border-radius:20px;direction:ltr;z-index:60}
+#milestone{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(0);background:#4a2c00;color:#ffd54f;padding:20px 40px;border-radius:20px;font-size:1.5rem;font-weight:bold;z-index:300;border:3px solid #ffd54f;text-align:center}
+#milestone.show{animation:ms .25s forwards,msOut .5s 2s forwards}
+@keyframes ms{to{transform:translate(-50%,-50%) scale(1) rotate(-2deg)}}
+@keyframes msOut{to{transform:translate(-50%,-50%) scale(0);opacity:0}}
+</style>
+</head>
+<body>
+<div class="flash" id="flash"></div>
+<div id="milestone"></div>
+<div id="combo">🔥 کمبو ×<span id="comboN">0</span></div>
+<div class="container">
+<header><h1>🍿 امپراطوری پاپ‌کورن 🍿<span>poppopcorn.com</span></h1></header>
+<div class="rank-bar"><div class="lvl" id="rank">🏳️ رتبه: کارگر اخراجی</div><div class="progress"><div id="bar" style="width:5%"></div></div><small id="nextRank" style="color:#888"></small></div>
+<div class="story"><b>📖 داستان تو:</b> تو یه کارگر ساده بودی... رئیست اخراجت کرد! حالا با همین یه دونه ذرت 🌽 یه امپراطوری بساز! هرچی سریع‌تر کلیک کنی کمبوت بالاتر میره! 🚀</div>
+<div class="stats">
+<div class="stat" id="sCount"><b id="count">۰</b><small>🍿 پاپ‌کورن</small></div>
+<div class="stat"><b id="perClick">۱</b><small>👆 در هر کلیک</small></div>
+<div class="stat"><b id="perSec">۰</b><small>⚙️ در هر ثانیه</small></div>
+</div>
+<div class="game-area" id="garea"><button id="cornBtn">🌽</button><div class="hint">⚡ بکوب روی ذرت! سریع بزن کمبو بگیر! ⚡</div></div>
+<div class="shop"><h2>🛒 فروشگاه بزرگ پاپ‌کورن 🛒</h2><div class="shop-sub">۱۶ ارتقای خفن — هر خرید یه جشنه! 🎉</div>
+<div class="cat">👆 افزایش قدرت کلیک</div><div class="shop-grid" id="shopClick"></div>
+<div class="cat">⚙️ درآمد خودکار در ثانیه</div><div class="shop-grid" id="shopSec"></div>
+</div>
+</div>
+<div class="made">made by makan</div>
+<script>
+let state=JSON.parse(localStorage.getItem('popcornSave'))||{count:0,perClick:1,perSec:0,items:{}};
+const items=[
+{id:'salt',emoji:'🧂',name:'نمک جادویی',desc:'+۱ در هر کلیک',base:50,type:'click',val:1},
+{id:'butter',emoji:'🧈',name:'کره طلایی',desc:'+۳ در هر کلیک',base:200,type:'click',val:3},
+{id:'caramel',emoji:'🍯',name:'سس کارامل',desc:'+۶ در هر کلیک',base:500,type:'click',val:6},
+{id:'cheese',emoji:'🧀',name:'پنیر چدار',desc:'+۱۲ در هر کلیک',base:1100,type:'click',val:12},
+{id:'pan',emoji:'🍳',name:'ماهیتابه مسی',desc:'+۲۵ در هر کلیک',base:2500,type:'click',val:25},
+{id:'pot',emoji:'🥘',name:'دیگ جادویی',desc:'+۶۰ در هر کلیک',base:6000,type:'click',val:60},
+{id:'glove',emoji:'🧤',name:'دستکش طلایی',desc:'+۱۵۰ در هر کلیک',base:15000,type:'click',val:150},
+{id:'diamond',emoji:'💎',name:'ذرت الماسی',desc:'+۴۰۰ در هر کلیک',base:40000,type:'click',val:400},
+{id:'machine',emoji:'🏭',name:'دستگاه پاپ‌کورن',desc:'+۵ در ثانیه',base:300,type:'sec',val:5},
+{id:'worker',emoji:'👷',name:'کارگر کمکی',desc:'+۱۵ در ثانیه',base:1000,type:'sec',val:15},
+{id:'truck',emoji:'🚚',name:'کامیون پخش',desc:'+۴۰ در ثانیه',base:3000,type:'sec',val:40},
+{id:'shop1',emoji:'🏪',name:'مغازه پاپ‌کورن',desc:'+۱۰۰ در ثانیه',base:8000,type:'sec',val:100},
+{id:'factory',emoji:'🏢',name:'کارخانه بزرگ',desc:'+۲۵۰ در ثانیه',base:20000,type:'sec',val:250},
+{id:'mall',emoji:'🏬',name:'فروشگاه زنجیره‌ای',desc:'+۷۰۰ در ثانیه',base:60000,type:'sec',val:700},
+{id:'empire',emoji:'👑',name:'امپراطوری جهانی',desc:'+۲۰۰۰ در ثانیه',base:180000,type:'sec',val:2000},
+{id:'rocket',emoji:'🚀',name:'سفینه فضایی ذرت',desc:'+۶۰۰۰ در ثانیه',base:500000,type:'sec',val:6000}];
+const ranks=[[0,'🏳️ کارگر اخراجی'],[500,'🌽 ذرت‌فروش خیابونی'],[2000,'🍿 مغازه‌دار'],[10000,'🏪 صاحب فروشگاه'],[50000,'🏭 کارخانه‌دار'],[200000,'🏢 سرمایه‌دار'],[1000000,'👑 امپراطور پاپ‌کورن'],[5000000,'🚀 سلطان کهکشان ذرت']];
+let combo=0,comboTimer=null,clicks=0;
+function fa(n){return Number(Math.floor(n)).toLocaleString('fa-IR')}
+function cost(it){return Math.floor(it.base*Math.pow(1.6,state.items[it.id]||0))}
+function save(){localStorage.setItem('popcornSave',JSON.stringify(state))}
+function popSound(big){try{let c=new (window.AudioContext||window.webkitAudioContext)();let o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.type='square';o.frequency.setValueAtTime(big?900:400+Math.random()*400,c.currentTime);o.frequency.exponentialRampToValueAtTime(1200,c.currentTime+.12);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.15);o.start();o.stop(c.currentTime+.16);}catch(e){}}
+function boom(x,y,n){for(let i=0;i<n;i++){let p=document.createElement('div');p.className='particle';p.textContent=['🍿','✨','⭐','💥','🌽'][Math.floor(Math.random()*5)];p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',(Math.random()*300-150)+'px');p.style.setProperty('--dy',(Math.random()*300-150)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1000);}}
+function milestone(t){let m=document.getElementById('milestone');m.textContent=t;m.classList.remove('show');void m.offsetWidth;m.classList.add('show');let f=document.getElementById('flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');}
+function card(it,i){
+let o=state.items[it.id]||0,c=cost(it);
+let d=document.createElement('div');d.className='card';d.style.animationDelay=(i*0.05)+'s';
+d.innerHTML='<div class="emoji">'+it.emoji+'</div><h3>'+it.name+'</h3><p>'+it.desc+'</p><div class="price">🍿 '+fa(c)+'</div><div class="owned">تعداد: '+fa(o)+'</div><br><button '+(state.count<c?'disabled':'')+'>خرید 🛒</button>';
+d.querySelector('button').onclick=(e)=>buy(it.id,e);return d;
+}
+function render(){
+document.getElementById('count').textContent=fa(state.count);
+document.getElementById('perClick').textContent=fa(state.perClick);
+document.getElementById('perSec').textContent=fa(state.perSec);
+let sc=document.getElementById('shopClick');sc.innerHTML='';
+let ss=document.getElementById('shopSec');ss.innerHTML='';
+let ci=0;items.forEach(it=>{if(it.type==='click')sc.appendChild(card(it,ci++));else ss.appendChild(card(it,ci++));});
+let r=ranks[0][1],nr=null;
+for(let i=0;i<ranks.length;i++){if(state.count>=ranks[i][0])r=ranks[i][1];else{nr=ranks[i];break;}}
+document.getElementById('rank').textContent='🏆 رتبه: '+r;
+if(nr){let pct=Math.min(100,state.count/nr[0]*100);document.getElementById('bar').style.width=pct+'%';document.getElementById('nextRank').textContent='تا «'+nr[1]+'» مونده: '+fa(nr[0]-state.count)+' 🍿';}
+else{document.getElementById('bar').style.width='100%';document.getElementById('nextRank').textContent='👑 به سقف رسیدی، افسانه‌ای!';}
+save();}
+function buy(id,e){
+let it=items.find(i=>i.id===id),c=cost(it);
+if(state.count>=c){state.count-=c;state.items[id]=(state.items[id]||0)+1;
+if(it.type==='click')state.perClick+=it.val;else state.perSec+=it.val;
+popSound(true);boom(e.clientX,e.clientY,12);render();}
+}
+let lastMile=0;
+document.getElementById('cornBtn').addEventListener('click',function(e){
+clicks++;
+let crit=Math.random()<0.08;
+let gain=state.perClick*(1+Math.floor(combo/20))*(crit?5:1);
+state.count+=gain;
+combo++;clearTimeout(comboTimer);
+comboTimer=setTimeout(()=>{combo=0;document.getElementById('combo').style.display='none';},2000);
+if(combo>=5){document.getElementById('combo').style.display='block';document.getElementById('comboN').textContent=fa(combo);}
+popSound(crit);boom(e.clientX,e.clientY,crit?16:7);
+let s=document.createElement('div');s.className='fly';s.style.color=crit?'#d40000':'#b34700';
+s.textContent=(crit?'💥 CRIT +':'🍿 +')+fa(gain);
+s.style.left=(e.clientX-20)+'px';s.style.top=(e.clientY-30)+'px';
+document.body.appendChild(s);setTimeout(()=>s.remove(),1000);
+let sc=document.getElementById('sCount');sc.classList.remove('bump');void sc.offsetWidth;sc.classList.add('bump');
+if(combo>0&&combo%50===0){document.getElementById('garea').classList.remove('shake');void document.getElementById('garea').offsetWidth;document.getElementById('garea').classList.add('shake');milestone('🔥 کمبو '+fa(combo)+'! ترکوندی! 🔥');}
+let miles=[1000,10000,100000,1000000];
+miles.forEach(m=>{if(state.count>=m&&lastMile<m){lastMile=m;milestone('🎉 '+fa(m)+' پاپ‌کورن! آفرین ماکان! 🎉');}});
+render();
+});
+setInterval(()=>{if(state.perSec>0){state.count+=state.perSec;render();}},1000);
+setInterval(()=>{let f=document.createElement('div');f.className='float-bg';f.textContent=['🍿','🌽','⭐','✨'][Math.floor(Math.random()*4)];f.style.left=Math.random()*100+'vw';f.style.animationDuration=(4+Math.random()*5)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),9000);},900);
+render();
+</script>
+</body>
+</html>
