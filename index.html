@@ -6,86 +6,46 @@
 <title>poppopcorn.com - امپراطوری پاپ‌کورن</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma,sans-serif}
-body{background:linear-gradient(270deg,#ff6a00,#ffa500,#ffcf70,#fff8f0,#ff8c00);background-size:400% 400%;animation:bgMove 12s ease infinite;min-height:100vh;color:#4a2c00;overflow-x:hidden}
-@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.float-bg{position:fixed;top:-50px;font-size:2rem;opacity:.5;pointer-events:none;animation:fall linear forwards;z-index:1}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
-.container{max-width:1100px;margin:0 auto;padding:20px;padding-bottom:80px;position:relative;z-index:2}
-header{text-align:center;background:rgba(255,255,255,.95);border-radius:25px;padding:20px;margin-bottom:15px;border:4px solid #ff8c00;box-shadow:0 10px 30px rgba(0,0,0,.2);animation:slideDown .7s ease}
-@keyframes slideDown{from{transform:translateY(-60px);opacity:0}to{transform:none;opacity:1}}
-header h1{font-size:2.2rem;color:#e65c00;text-shadow:2px 2px 0 #ffe0b3;animation:glow 2s infinite alternate}
-@keyframes glow{from{text-shadow:2px 2px 0 #ffe0b3}to{text-shadow:2px 2px 15px #ff8c00}}
+body{background:linear-gradient(135deg,#ff8c00 0%,#ffa500 40%,#fff8f0 100%);min-height:100vh;color:#4a2c00}
+.container{max-width:1100px;margin:0 auto;padding:20px;padding-bottom:70px}
+header{text-align:center;background:#fff;border-radius:20px;padding:20px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,.15);border:4px solid #ff8c00}
+header h1{font-size:2.2rem;color:#e65c00}
 header h1 span{font-size:1rem;color:#999;display:block;direction:ltr}
-.rank-bar{background:#fff;border-radius:15px;padding:12px 18px;margin-bottom:15px;border:2px solid #ffb347;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.1)}
-.rank-bar .lvl{font-weight:bold;color:#e65c00;font-size:1.1rem}
-.progress{height:12px;background:#ffe0b3;border-radius:20px;margin-top:8px;overflow:hidden}
-.progress div{height:100%;background:linear-gradient(90deg,#ff8c00,#ffd54f);border-radius:20px;transition:width .4s;animation:shine 1.5s infinite}
-@keyframes shine{0%{filter:brightness(1)}50%{filter:brightness(1.25)}100%{filter:brightness(1)}}
-.story{background:#fff;border-radius:15px;padding:14px 18px;margin-bottom:15px;border-right:6px solid #e65c00;line-height:1.9;animation:fadeIn 1s}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.stats{display:flex;gap:12px;justify-content:center;margin-bottom:15px;flex-wrap:wrap;position:sticky;top:10px;z-index:10}
-.stat{background:#fff;border-radius:15px;padding:12px 22px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.15);min-width:135px;border:2px solid #ffb347;transition:transform .2s}
-.stat.bump{transform:scale(1.15) rotate(-2deg)}
+.story{background:#fff;border-radius:15px;padding:15px 20px;margin-bottom:20px;border-right:6px solid #e65c00;line-height:1.9}
+.stats{display:flex;gap:15px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;position:sticky;top:10px;z-index:10}
+.stat{background:#fff;border-radius:15px;padding:12px 25px;text-align:center;box-shadow:0 5px 15px rgba(0,0,0,.15);min-width:140px;border:2px solid #ffb347}
 .stat b{font-size:1.6rem;color:#e65c00;display:block}
 .stat small{color:#888}
-#combo{position:fixed;top:15px;left:15px;background:#4a2c00;color:#ffd54f;font-weight:bold;padding:10px 18px;border-radius:30px;font-size:1.1rem;display:none;z-index:50;box-shadow:0 5px 20px rgba(0,0,0,.3);animation:comboPop .3s}
-@keyframes comboPop{from{transform:scale(.5)}to{transform:scale(1)}}
-.game-area{background:rgba(255,255,255,.97);border-radius:30px;padding:30px 20px;text-align:center;border:4px solid #ff8c00;margin-bottom:15px;box-shadow:0 15px 40px rgba(230,92,0,.25);position:relative;overflow:hidden}
-.game-area::before{content:'✨';position:absolute;font-size:5rem;opacity:.07;top:10px;left:20px;animation:spin 8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-#cornBtn{font-size:9rem;background:none;border:none;cursor:pointer;user-select:none;transition:transform .08s;filter:drop-shadow(0 12px 18px rgba(230,92,0,.4));animation:idle 2s ease-in-out infinite}
-@keyframes idle{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.05) rotate(2deg)}}
-#cornBtn:active{transform:scale(.82) rotate(-8deg)}
-.hint{color:#e65c00;font-weight:bold;margin-top:10px;animation:pulse 1.2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.05)}}
-.fly{position:fixed;font-weight:bold;pointer-events:none;z-index:99;animation:flyUp 1s forwards;font-size:1.4rem;text-shadow:1px 1px 0 #fff}
-@keyframes flyUp{to{transform:translateY(-160px) scale(1.4) rotate(10deg);opacity:0}}
-.particle{position:fixed;font-size:1.8rem;pointer-events:none;z-index:99;animation:boom 1s ease-out forwards}
-@keyframes boom{to{transform:translate(var(--dx),var(--dy)) scale(.3) rotate(300deg);opacity:0}}
-.shake{animation:shake .4s}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px) rotate(-1deg)}75%{transform:translateX(10px) rotate(1deg)}}
-.shop h2{text-align:center;color:#fff;background:linear-gradient(90deg,#e65c00,#ff8c00);border-radius:15px;padding:14px;margin-bottom:5px;box-shadow:0 5px 15px rgba(0,0,0,.2);animation:fadeIn .8s}
-.shop-sub{text-align:center;color:#fff;margin-bottom:10px;font-size:.9rem;text-shadow:1px 1px 3px rgba(0,0,0,.3)}
-.cat{background:#4a2c00;color:#ffd54f;border-radius:10px;padding:9px;margin:18px 0 12px;text-align:center;font-weight:bold;letter-spacing:1px}
-.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-.card{background:#fff;border-radius:18px;padding:16px;text-align:center;border:2px solid #ffb347;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:transform .25s,box-shadow .25s;animation:cardIn .5s ease backwards}
-@keyframes cardIn{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
-.card:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 12px 25px rgba(230,92,0,.3)}
-.card .emoji{font-size:2.8rem;display:inline-block;animation:wobble 3s ease-in-out infinite}
-@keyframes wobble{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.game-area{background:#fff;border-radius:25px;padding:35px 20px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.15);border:4px solid #ff8c00;margin-bottom:20px}
+#cornBtn{font-size:9rem;background:none;border:none;cursor:pointer;transition:transform .1s;user-select:none}
+#cornBtn:active{transform:scale(.88)}
+.hint{color:#e65c00;font-weight:bold;margin-top:10px}
+.shop h2{text-align:center;color:#fff;background:#e65c00;border-radius:15px;padding:12px;margin-bottom:5px}
+.shop-sub{text-align:center;color:#fff;margin-bottom:15px;font-size:.9rem}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.card{background:#fff;border-radius:15px;padding:16px;text-align:center;border:2px solid #ffb347;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.card .emoji{font-size:2.8rem}
 .card h3{margin:8px 0 4px;color:#e65c00;font-size:1rem}
 .card p{font-size:.82rem;color:#666;min-height:38px}
 .card .price{background:#fff3e0;border-radius:10px;padding:6px;margin:8px 0;font-weight:bold;color:#b34700}
-.card button{background:linear-gradient(180deg,#ffa500,#e65c00);color:#fff;border:none;border-radius:12px;padding:11px;font-size:.95rem;font-weight:bold;cursor:pointer;width:100%;transition:.2s;box-shadow:0 4px 0 #a03e00}
-.card button:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.1)}
-.card button:active:not(:disabled){transform:translateY(2px);box-shadow:none}
-.card button:disabled{background:#ccc;cursor:not-allowed;box-shadow:none}
+.card button{background:#ff8c00;color:#fff;border:none;border-radius:10px;padding:10px;font-size:.95rem;font-weight:bold;cursor:pointer;width:100%}
+.card button:disabled{background:#ccc;cursor:not-allowed}
 .card .owned{font-size:.8rem;color:green;font-weight:bold}
-.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:200}
-.flash.go{animation:flashA .4s}
-@keyframes flashA{0%{opacity:0}30%{opacity:.7}100%{opacity:0}}
-.made{position:fixed;bottom:10px;right:12px;background:rgba(0,0,0,.65);color:#fff;font-size:.8rem;padding:5px 12px;border-radius:20px;direction:ltr;z-index:60}
-#milestone{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%) scale(0);background:#4a2c00;color:#ffd54f;padding:20px 40px;border-radius:20px;font-size:1.5rem;font-weight:bold;z-index:300;border:3px solid #ffd54f;text-align:center}
-#milestone.show{animation:ms .25s forwards,msOut .5s 2s forwards}
-@keyframes ms{to{transform:translate(-50%,-50%) scale(1) rotate(-2deg)}}
-@keyframes msOut{to{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.cat{background:#4a2c00;color:#fff;border-radius:10px;padding:8px;margin:20px 0 12px;text-align:center}
+.made{position:fixed;bottom:10px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-size:.8rem;padding:5px 12px;border-radius:20px;direction:ltr}
 </style>
 </head>
 <body>
-<div class="flash" id="flash"></div>
-<div id="milestone"></div>
-<div id="combo">🔥 کمبو ×<span id="comboN">0</span></div>
 <div class="container">
 <header><h1>🍿 امپراطوری پاپ‌کورن 🍿<span>poppopcorn.com</span></h1></header>
-<div class="rank-bar"><div class="lvl" id="rank">🏳️ رتبه: کارگر اخراجی</div><div class="progress"><div id="bar" style="width:5%"></div></div><small id="nextRank" style="color:#888"></small></div>
-<div class="story"><b>📖 داستان تو:</b> تو یه کارگر ساده بودی... رئیست اخراجت کرد! حالا با همین یه دونه ذرت 🌽 یه امپراطوری بساز! هرچی سریع‌تر کلیک کنی کمبوت بالاتر میره! 🚀</div>
+<div class="story"><b>📖 داستان تو:</b> تو یه کارگر ساده بودی... رئیست اخراجت کرد! حالا با همین یه دونه ذرت یه امپراطوری بساز! روی ذرت کلیک کن! 🚀</div>
 <div class="stats">
-<div class="stat" id="sCount"><b id="count">۰</b><small>🍿 پاپ‌کورن</small></div>
+<div class="stat"><b id="count">۰</b><small>🍿 پاپ‌کورن</small></div>
 <div class="stat"><b id="perClick">۱</b><small>👆 در هر کلیک</small></div>
 <div class="stat"><b id="perSec">۰</b><small>⚙️ در هر ثانیه</small></div>
 </div>
-<div class="game-area" id="garea"><button id="cornBtn">🌽</button><div class="hint">⚡ بکوب روی ذرت! سریع بزن کمبو بگیر! ⚡</div></div>
-<div class="shop"><h2>🛒 فروشگاه بزرگ پاپ‌کورن 🛒</h2><div class="shop-sub">۱۶ ارتقای خفن — هر خرید یه جشنه! 🎉</div>
+<div class="game-area"><button id="cornBtn">🌽</button><div class="hint">بکوب روی ذرت! 🍿</div></div>
+<div class="shop"><h2>🛒 فروشگاه بزرگ پاپ‌کورن</h2><div class="shop-sub">۱۶ ارتقای خفن برای امپراطوریت!</div>
 <div class="cat">👆 افزایش قدرت کلیک</div><div class="shop-grid" id="shopClick"></div>
 <div class="cat">⚙️ درآمد خودکار در ثانیه</div><div class="shop-grid" id="shopSec"></div>
 </div>
@@ -109,20 +69,16 @@ const items=[
 {id:'factory',emoji:'🏢',name:'کارخانه بزرگ',desc:'+۲۵۰ در ثانیه',base:20000,type:'sec',val:250},
 {id:'mall',emoji:'🏬',name:'فروشگاه زنجیره‌ای',desc:'+۷۰۰ در ثانیه',base:60000,type:'sec',val:700},
 {id:'empire',emoji:'👑',name:'امپراطوری جهانی',desc:'+۲۰۰۰ در ثانیه',base:180000,type:'sec',val:2000},
-{id:'rocket',emoji:'🚀',name:'سفینه فضایی ذرت',desc:'+۶۰۰۰ در ثانیه',base:500000,type:'sec',val:6000}];
-const ranks=[[0,'🏳️ کارگر اخراجی'],[500,'🌽 ذرت‌فروش خیابونی'],[2000,'🍿 مغازه‌دار'],[10000,'🏪 صاحب فروشگاه'],[50000,'🏭 کارخانه‌دار'],[200000,'🏢 سرمایه‌دار'],[1000000,'👑 امپراطور پاپ‌کورن'],[5000000,'🚀 سلطان کهکشان ذرت']];
-let combo=0,comboTimer=null,clicks=0;
+{id:'rocket',emoji:'🚀',name:'سفینه فضایی ذرت',desc:'+۶۰۰۰ در ثانیه',base:500000,type:'sec',val:6000},
+];
 function fa(n){return Number(Math.floor(n)).toLocaleString('fa-IR')}
-function cost(it){return Math.floor(it.base*Math.pow(1.6,state.items[it.id]||0))}
+function cost(it){let o=state.items[it.id]||0;return Math.floor(it.base*Math.pow(1.6,o))}
 function save(){localStorage.setItem('popcornSave',JSON.stringify(state))}
-function popSound(big){try{let c=new (window.AudioContext||window.webkitAudioContext)();let o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.type='square';o.frequency.setValueAtTime(big?900:400+Math.random()*400,c.currentTime);o.frequency.exponentialRampToValueAtTime(1200,c.currentTime+.12);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.15);o.start();o.stop(c.currentTime+.16);}catch(e){}}
-function boom(x,y,n){for(let i=0;i<n;i++){let p=document.createElement('div');p.className='particle';p.textContent=['🍿','✨','⭐','💥','🌽'][Math.floor(Math.random()*5)];p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',(Math.random()*300-150)+'px');p.style.setProperty('--dy',(Math.random()*300-150)+'px');document.body.appendChild(p);setTimeout(()=>p.remove(),1000);}}
-function milestone(t){let m=document.getElementById('milestone');m.textContent=t;m.classList.remove('show');void m.offsetWidth;m.classList.add('show');let f=document.getElementById('flash');f.classList.remove('go');void f.offsetWidth;f.classList.add('go');}
-function card(it,i){
-let o=state.items[it.id]||0,c=cost(it);
-let d=document.createElement('div');d.className='card';d.style.animationDelay=(i*0.05)+'s';
-d.innerHTML='<div class="emoji">'+it.emoji+'</div><h3>'+it.name+'</h3><p>'+it.desc+'</p><div class="price">🍿 '+fa(c)+'</div><div class="owned">تعداد: '+fa(o)+'</div><br><button '+(state.count<c?'disabled':'')+'>خرید 🛒</button>';
-d.querySelector('button').onclick=(e)=>buy(it.id,e);return d;
+function card(it){
+let o=state.items[it.id]||0;let c=cost(it);
+let d=document.createElement('div');d.className='card';
+d.innerHTML='<div class="emoji">'+it.emoji+'</div><h3>'+it.name+'</h3><p>'+it.desc+'</p><div class="price">🍿 '+fa(c)+'</div><div class="owned">تعداد: '+fa(o)+'</div><br><button '+(state.count<c?'disabled':'')+'>خرید</button>';
+d.querySelector('button').onclick=()=>buy(it.id);return d;
 }
 function render(){
 document.getElementById('count').textContent=fa(state.count);
@@ -130,41 +86,18 @@ document.getElementById('perClick').textContent=fa(state.perClick);
 document.getElementById('perSec').textContent=fa(state.perSec);
 let sc=document.getElementById('shopClick');sc.innerHTML='';
 let ss=document.getElementById('shopSec');ss.innerHTML='';
-let ci=0;items.forEach(it=>{if(it.type==='click')sc.appendChild(card(it,ci++));else ss.appendChild(card(it,ci++));});
-let r=ranks[0][1],nr=null;
-for(let i=0;i<ranks.length;i++){if(state.count>=ranks[i][0])r=ranks[i][1];else{nr=ranks[i];break;}}
-document.getElementById('rank').textContent='🏆 رتبه: '+r;
-if(nr){let pct=Math.min(100,state.count/nr[0]*100);document.getElementById('bar').style.width=pct+'%';document.getElementById('nextRank').textContent='تا «'+nr[1]+'» مونده: '+fa(nr[0]-state.count)+' 🍿';}
-else{document.getElementById('bar').style.width='100%';document.getElementById('nextRank').textContent='👑 به سقف رسیدی، افسانه‌ای!';}
+items.forEach(it=>{if(it.type==='click')sc.appendChild(card(it));else ss.appendChild(card(it));});
 save();}
-function buy(id,e){
-let it=items.find(i=>i.id===id),c=cost(it);
+function buy(id){let it=items.find(i=>i.id===id);let c=cost(it);
 if(state.count>=c){state.count-=c;state.items[id]=(state.items[id]||0)+1;
-if(it.type==='click')state.perClick+=it.val;else state.perSec+=it.val;
-popSound(true);boom(e.clientX,e.clientY,12);render();}
-}
-let lastMile=0;
+if(it.type==='click')state.perClick+=it.val;else state.perSec+=it.val;render();}}
 document.getElementById('cornBtn').addEventListener('click',function(e){
-clicks++;
-let crit=Math.random()<0.08;
-let gain=state.perClick*(1+Math.floor(combo/20))*(crit?5:1);
-state.count+=gain;
-combo++;clearTimeout(comboTimer);
-comboTimer=setTimeout(()=>{combo=0;document.getElementById('combo').style.display='none';},2000);
-if(combo>=5){document.getElementById('combo').style.display='block';document.getElementById('comboN').textContent=fa(combo);}
-popSound(crit);boom(e.clientX,e.clientY,crit?16:7);
-let s=document.createElement('div');s.className='fly';s.style.color=crit?'#d40000':'#b34700';
-s.textContent=(crit?'💥 CRIT +':'🍿 +')+fa(gain);
-s.style.left=(e.clientX-20)+'px';s.style.top=(e.clientY-30)+'px';
-document.body.appendChild(s);setTimeout(()=>s.remove(),1000);
-let sc=document.getElementById('sCount');sc.classList.remove('bump');void sc.offsetWidth;sc.classList.add('bump');
-if(combo>0&&combo%50===0){document.getElementById('garea').classList.remove('shake');void document.getElementById('garea').offsetWidth;document.getElementById('garea').classList.add('shake');milestone('🔥 کمبو '+fa(combo)+'! ترکوندی! 🔥');}
-let miles=[1000,10000,100000,1000000];
-miles.forEach(m=>{if(state.count>=m&&lastMile<m){lastMile=m;milestone('🎉 '+fa(m)+' پاپ‌کورن! آفرین ماکان! 🎉');}});
-render();
-});
-setInterval(()=>{if(state.perSec>0){state.count+=state.perSec;render();}},1000);
-setInterval(()=>{let f=document.createElement('div');f.className='float-bg';f.textContent=['🍿','🌽','⭐','✨'][Math.floor(Math.random()*4)];f.style.left=Math.random()*100+'vw';f.style.animationDuration=(4+Math.random()*5)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),9000);},900);
+state.count+=state.perClick;render();
+let s=document.createElement('div');s.style.cssText='position:fixed;font-size:1.5rem;pointer-events:none;z-index:99;animation:fly 1s forwards';
+s.textContent='🍿+'+fa(state.perClick);s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';
+document.body.appendChild(s);setTimeout(()=>s.remove(),900);});
+let st=document.createElement('style');st.textContent='@keyframes fly{to{transform:translateY(-120px);opacity:0}}';document.head.appendChild(st);
+setInterval(()=>{if(state.perSec>0){state.count+=state.perSec;render()}},1000);
 render();
 </script>
 </body>
